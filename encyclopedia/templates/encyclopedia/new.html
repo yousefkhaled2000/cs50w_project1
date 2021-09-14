@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+    <h1>Create a new page</h1>
+    <hr>
+    {% if error %}
+        <b class="error">An entry in the same title already exist!</b>
+    {% else %}
+        <br>
+    {% endif %}
+    <form action="{% url 'new' %}" class="nform" id="nform" method="post">
+        {% csrf_token %}
+        <label for="title">Title of entry:</label>
+        <input type="text" name="title" class="title" id="title" />
+        <input type="submit" value="Save" />
+    </form>
+    <div class="content">
+        <label for="txtarea" class="label">Content in Markdown:</label>
+        <textarea name="content" id="txtarea" form="nform"></textarea>
+    </div>
+
+{% endblock %}
